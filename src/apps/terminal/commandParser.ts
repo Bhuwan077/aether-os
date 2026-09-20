@@ -87,6 +87,32 @@ export class TerminalEngine {
     ctx: CommandContext
   ): string {
     switch (cmd) {
+      case 'matrix':
+        if (ctx.setMatrixMode) {
+          ctx.setMatrixMode(true);
+          return 'Entering the Matrix...';
+        }
+        return 'Matrix visualizer ready.';
+
+      case 'neofetch':
+        return [
+          '   █████╗ ███████╗████████╗██╗  ██╗███████╗██████╗     user@aether-workstation',
+          '  ██╔══██╗██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗    -----------------------',
+          '  ███████║█████╗     ██║   ███████║█████╗  ██████╔╝    OS: AetherOS v2.4 (Quantum Cyberpunk)',
+          '  ██╔══██║██╔══╝     ██║   ██╔══██║██╔══╝  ██╔══██╗    Host: WebAssembly Virtual Platform',
+          '  ██║  ██║███████╗   ██║   ██║  ██║███████╗██║  ██║    Kernel: 6.12.0-aether-wasm',
+          '  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    Uptime: 42 days, 13 hours, 37 mins',
+          '                                                       Shell: aether-sh 2.4.0',
+          '                                                       Resolution: 1920x1080 (Retina Ready)',
+          '                                                       WM: Aether Glass Compositor',
+          '                                                       Theme: Cyberpunk Neon (Glassmorphism)',
+          '                                                       Terminal: RetroTerm Canvas 120 FPS',
+          '                                                       Audio Engine: Procedural Web Audio Synth',
+          '                                                       Memory: 1420MB / 8192MB (VFS Active)',
+          '                                                       ',
+          '                                                       [■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■]',
+        ].join('\n');
+
       case 'help':
         return [
           '⚡ AetherOS Terminal Shell — Available Commands:',

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { TerminalEngine, CommandContext } from './commandParser';
+import { MatrixRain } from './MatrixRain';
 import { sound } from '../../core/audio/soundEngine';
 
 interface HistoryEntry {
@@ -15,6 +16,7 @@ interface RetroTermProps {
 export const RetroTerm: React.FC<RetroTermProps> = () => {
   const engine = useMemo(() => new TerminalEngine(), []);
   const [cwd, setCwd] = useState('/home/user');
+  const [matrixMode, setMatrixMode] = useState(false);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<HistoryEntry[]>([
     { type: 'output', content: '🌌 AetherOS Interactive Terminal v2.4 (x86_64-wasm)' },
@@ -38,6 +40,9 @@ export const RetroTerm: React.FC<RetroTermProps> = () => {
     },
     clear: () => {
       setHistory([]);
+    },
+    setMatrixMode: (active: boolean) => {
+      setMatrixMode(active);
     },
   };
 
@@ -160,6 +165,8 @@ export const RetroTerm: React.FC<RetroTermProps> = () => {
         />
       </div>
       <div ref={terminalEndRef} />
+
+      {matrixMode && <MatrixRain onExit={() => setMatrixMode(false)} />}
     </div>
   );
 };
