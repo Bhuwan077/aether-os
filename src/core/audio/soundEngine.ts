@@ -9,7 +9,7 @@ export class SoundEngine {
   private volume = 0.3;
 
   private initCtx(): void {
-    if (this.ctx) return;
+    if (this.ctx || typeof window === 'undefined') return;
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (AudioCtx) {
