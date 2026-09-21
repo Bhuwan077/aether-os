@@ -1,42 +1,68 @@
 # 🌌 AETHER OS — Futuristic Cyberpunk Web Workstation
 
 ```text
-   █████╗ ███████╗████████╗██╗  ██╗███████╗██████╗     OS: AetherOS Quantum v2.4
+   █████╗ ███████╗████████╗██╗  ██╗███████╗██████╗     OS: AetherOS Quantum v2.5
   ██╔══██╗██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗    Kernel: WebAssembly 64-bit
-  ███████║█████╗     ██║   ███████║█████╗  ██████╔╝    UI: Glassmorphism Compositor
+  ███████║█████╗     ██║   ███████║█████╗  ██████╔╝    Compositor: Glassmorphism Multi-Window
   ██╔══██║██╔══╝     ██║   ██╔══██║██╔══╝  ██╔══██╗    Audio: Procedural Web Audio Synth
-  ██║  ██║███████╗   ██║   ██║  ██║███████╗██║  ██║    Status: Production Ready
-  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    FPS: 60-120 Native
+  ██║  ██║███████╗   ██║   ██║  ██║███████╗██║  ██║    Status: Production Ready • 42 Commits
+  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    Tests: 59/59 Passing (100%)
 ```
 
-> **AetherOS** is a next-generation web desktop environment and developer workstation engineered with React 19, TypeScript, and Vite. Designed with cyberpunk aesthetics, high-performance rendering, zero-asset procedural audio synthesis, a complete in-memory & persistent Virtual File System (VFS), and a suite of powerful creative engineering tools.
+> **AetherOS** is an ultra-fast, modular cyberpunk desktop environment and developer workstation engineered with **React 19, TypeScript, and Vite**. It combines high-performance multi-window compositing, a persistent Virtual File System, procedural audio synthesis, deep learning neural networks, quantum computing simulation, and WebGL raymarching shaders.
 
 ---
 
 ## ⚡ Key Highlights & Architecture
 
-### 🪟 1. Advanced Multi-Window Desktop Compositor
-- **Window Management**: Draggable, resizable, minimizable, maximizable, and snap-to-edge layout engine.
-- **Z-Index Layering**: Dynamic stacking context with automatic active window election and focus tracking.
-- **Snap Shortcuts**: Split-screen left (`◧`) and right (`◨`) layout docking.
-- **Glassmorphism & CRT Shaders**: Frosted glass panels with real-time blur, glowing neon borders, and CRT scanlines toggle.
+```mermaid
+flowchart TD
+    subgraph DesktopCompositor["Desktop Compositor & Shell"]
+        WM["Window Manager (Drag, Resize, Snap)"]
+        Dock["Floating Magnification Dock"]
+        Taskbar["Taskbar & System Tray (FPS, Clock, Audio)"]
+        Palette["Command Palette (Ctrl + K + Math Evaluator)"]
+        Notif["Notification Center (Audio Toasts)"]
+        Cosmos["Cosmos Wallpaper Engine (Particles)"]
+    end
 
-### 💾 2. Virtual File System (VFS)
-- Hierarchical Unix-style virtual filesystem with `localStorage` persistent synchronization.
-- Full CRUD capabilities: `mkdir`, `readFile`, `writeFile`, `rm`, `readDir`, `stat`, and `tree` generator.
-- Pre-seeded system directories: `/home/user/desktop`, `/home/user/projects`, `/etc`, `/var/log`.
+    subgraph CoreEngines["Core Infrastructure"]
+        VFS["Virtual File System (LocalStorage Persistence)"]
+        Audio["Web Audio Procedural Synth Engine"]
+        Theme["Theme Matrix (5 Cyberpunk Themes)"]
+    end
 
-### 🔊 3. Procedural Web Audio Engine
-- **100% Asset-Free**: No external audio files or network requests needed. Procedural real-time synthesis using the Web Audio API.
-- **Tactile UI Audio**: Synthesized clicks, window power-on chords, close tones, and success chimes.
-- **Harmonic Algorithmic Sound**: Dynamic pitch generation synchronized with algorithm comparisons and swaps.
+    subgraph CreativeApps["Creative & Engineering Suite"]
+        Neural["NeuralPlayground (MLP & Heatmap)"]
+        Quantum["QuantumStudio (Statevector & Gates)"]
+        Shader["ShaderForge (WebGL GLSL & Audio)"]
+        Pixel["CyberPaint (Pixel Art & Sprite Anim)"]
+        FileF["FileFlow (VFS Graphical Explorer)"]
+        Term["RetroTerm (Unix Shell + Matrix Rain)"]
+        Algo["AlgoPulse (Sorting, Pathfinding, Life)"]
+        Code["CodeCraft (Live JS REPL & Benchmarks)"]
+        Synth["SynthLab (Keyboard + Oscilloscope)"]
+        Mind["MindCanvas (Force-Directed Graph)"]
+        Task["TaskNexus (Kanban + Pomodoro)"]
+        Sys["SysMon (Telemetry & Process Manager)"]
+    end
+
+    DesktopCompositor --> CoreEngines
+    CreativeApps --> DesktopCompositor
+    CreativeApps --> CoreEngines
+```
 
 ---
 
-## 🚀 Built-in Applications Suite
+## 🚀 The 12 Built-In Power Applications
 
 | Application | Description |
 | :--- | :--- |
+| **🧠 NeuralPlayground** | Interactive deep learning sandbox with multi-layer perceptron (MLP), feedforward and backpropagation with matrix math, real-time 2D decision boundary heatmap, synaptic weight topology, and synthetic dataset generators (Spiral, XOR, Circle). |
+| **⚛️ QuantumStudio** | Multi-qubit statevector quantum circuit simulator with Hadamard (H), Pauli (X, Y, Z), Phase (S), T, and CNOT entanglement gates. Features measurement probability histograms and Bell/GHZ presets. |
+| **🔮 ShaderForge** | Real-time WebGL fragment shader visualizer with audio reactivity (`u_audio` FFT RMS), live GLSL compilation diagnostics, 60 FPS viewport, and presets (*Cyber Tunnel*, *Neon Grid Horizon*, *Cosmic Plasma*). |
+| **🎨 CyberPaint** | 8-bit pixel art studio and sprite animator with flood fill (BFS), color dropper, customizable cyber palettes, multi-frame timeline, FPS loop playback, and PNG export. |
+| **📁 FileFlow** | Graphical file manager for the Virtual File System featuring bookmark favorites, breadcrumb navigation, search filters, file inspector with in-place text/markdown editing, and file creation. |
 | **📟 RetroTerm** | Authentic Unix terminal with command tokenizer, pipes (`\|`), grep filters, command history (`↑`/`↓`), tab autocomplete, `neofetch`, and fullscreen **Matrix digital rain**. |
 | **⚡ AlgoPulse** | Algorithm studio featuring **Sorting Visualizer** (QuickSort, BubbleSort, InsertionSort with musical pitches), **Pathfinding Visualizer** (A* & Dijkstra with interactive wall drawing), and **Conway's Game of Life** with presets. |
 | **💻 CodeCraft** | In-browser JavaScript code editor and execution sandbox with line numbers, console logger, execution duration benchmarks, and VFS file synchronization. |
@@ -62,8 +88,9 @@ AetherOS includes 5 custom built-in cyberpunk and developer themes:
 
 | Keybinding | Action |
 | :--- | :--- |
-| `Ctrl + K` / `Cmd + K` | Summon Global Spotlight Command Palette |
+| `Ctrl + K` / `Cmd + K` | Summon Global Spotlight Command Palette (with inline math solver) |
 | `Double Click Titlebar` | Maximize / Restore Window |
+| `◧` / `◨` Buttons | Snap Window Half-Screen Dock |
 | `Tab` (in RetroTerm) | Autocomplete command names and file paths |
 | `↑` / `↓` (in RetroTerm) | Traverse previous command history |
 | `Q`, `W`, `E`, `R`, `T`... | Play piano keys in SynthLab |
@@ -74,15 +101,11 @@ AetherOS includes 5 custom built-in cyberpunk and developer themes:
 
 ## 🛠️ Development & Testing
 
-### Prerequisites
-- Node.js `v18+` or higher
-- npm `v9+`
-
 ### Quick Start
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd practice
+git clone https://github.com/Bhuwan077/aether-os.git
+cd aether-os
 
 # Install dependencies
 npm install
@@ -93,7 +116,7 @@ npm run dev
 
 ### Running Test Suite
 ```bash
-# Run Vitest unit tests (covering VFS, WM, Terminal, Audio, Algorithms, Themes)
+# Run Vitest unit tests (59 tests covering VFS, WM, Terminal, Audio, Algorithms, Neural, Quantum, Math)
 npm test
 ```
 
@@ -108,15 +131,22 @@ npm run preview
 
 ---
 
-## 🧪 Test Coverage Summary
-- Virtual File System (VFS CRUD, tree, path normalization, error resilience)
-- Window Manager (z-index layering, snapping, maximizing, restore bounds, focus)
-- Terminal Engine (tokenization, quotes, pipe evaluation, autocomplete, math calc)
-- Audio Engine (volume clamping, mute state toggling, procedural synthesis)
-- Sorting Algorithms (QuickSort, BubbleSort, InsertionSort correctness)
-- Pathfinding Algorithms (A* search, Dijkstra shortest path, obstacle avoidance)
-- Cellular Automaton (Conway's Game of Life B3/S23 rules, glider presets)
-- Theme Configuration (contrast validation, color tokens)
+## 🧪 Test Coverage Summary (59 Unit Tests Passing)
+- **Virtual File System**: CRUD, tree, path normalization, persistent storage
+- **Window Manager**: Z-index stacking, edge snapping, maximization, bounds restoration
+- **Terminal Engine**: Tokenization, quotes, pipe execution, command autocomplete
+- **Audio Engine**: Procedural synthesis, volume clamping, mute toggling
+- **Sorting Algorithms**: QuickSort, BubbleSort, InsertionSort correctness
+- **Pathfinding Algorithms**: A* heuristic search, Dijkstra shortest path
+- **Cellular Automaton**: Conway's Game of Life B3/S23 rules & presets
+- **Neural Network**: Multi-layer forward pass, analytic activation gradients, backpropagation loss reduction
+- **Neural Datasets**: Circle, Spiral, and XOR data point generators
+- **Quantum Computing**: Complex number multiplication, Hadamard superposition, Pauli gates, Bell & GHZ state entanglement
+- **Quantum Presets**: Monte Carlo probability distribution sampling
+- **FileFlow Operations**: Directory listing, file editing, breadcrumbs
+- **Pixel Art**: Cyberpunk palette verification and 4-way BFS flood fill
+- **System Notifications**: Notification dispatch, priority routing, and auto-dismissal
+- **Quick Calculator**: Inline arithmetic evaluation and operator precedence
 
 ---
 
