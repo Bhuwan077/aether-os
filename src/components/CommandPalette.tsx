@@ -16,6 +16,7 @@ import {
   Volume2,
   VolumeX,
   HelpCircle,
+  Sparkles,
 } from 'lucide-react';
 
 export interface CommandItem {
@@ -186,20 +187,23 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   const mathResult = evaluateMath(query);
 
-  const filtered = [
-    ...(mathResult !== null
-      ? [
-          {
-            id: 'math-result',
-            title: `Calculation Result: ${mathResult}`,
-            category: 'System' as const,
-            icon: <Activity size={16} color="var(--success)" />,
-            action: () => {
-              navigator.clipboard?.writeText(String(mathResult));
-            },
+  const mathCommandItem: CommandItem[] = mathResult !== null
+    ? [
+        {
+          id: 'math-result',
+          title: `Calculation Result: ${mathResult}`,
+          category: 'System' as const,
+          icon: <Activity size={16} color="var(--success)" />,
+          shortcut: 'Enter',
+          action: () => {
+            navigator.clipboard?.writeText(String(mathResult));
           },
-        ]
-      : []),
+        },
+      ]
+    : [];
+
+  const filtered: CommandItem[] = [
+    ...mathCommandItem,
     ...commands.filter(
       (cmd) =>
         cmd.title.toLowerCase().includes(query.toLowerCase()) ||

@@ -2,7 +2,7 @@ import React from 'react';
 import { WindowState, WindowId } from '../core/wm/types';
 import { SystemTray } from './SystemTray';
 import { ThemeId } from '../core/theme/types';
-import { Terminal, Cpu, Code, Music, Share2, CheckSquare, Sparkles } from 'lucide-react';
+import { Terminal, Cpu, Code, Music, Share2, CheckSquare, Sparkles, Activity, Folder, Palette } from 'lucide-react';
 import { sound } from '../core/audio/soundEngine';
 
 interface TaskbarProps {
