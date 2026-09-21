@@ -95,11 +95,51 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       action: () => onLaunchApp('tasknexus'),
     },
     {
+      id: 'app-neural',
+      title: 'Open NeuralPlayground (AI & Deep Learning)',
+      category: 'Applications',
+      icon: <Cpu size={16} />,
+      shortcut: 'N',
+      action: () => onLaunchApp('neural'),
+    },
+    {
+      id: 'app-quantum',
+      title: 'Open QuantumStudio (Qubits & Circuits)',
+      category: 'Applications',
+      icon: <Activity size={16} />,
+      shortcut: 'Q',
+      action: () => onLaunchApp('quantum'),
+    },
+    {
+      id: 'app-shaders',
+      title: 'Open ShaderForge (WebGL Shaders)',
+      category: 'Applications',
+      icon: <Sparkles size={16} />,
+      shortcut: 'F',
+      action: () => onLaunchApp('shaders'),
+    },
+    {
+      id: 'app-paint',
+      title: 'Open CyberPaint (Pixel Art & Sprites)',
+      category: 'Applications',
+      icon: <Palette size={16} />,
+      shortcut: 'P',
+      action: () => onLaunchApp('pixelart'),
+    },
+    {
+      id: 'app-files',
+      title: 'Open FileFlow (VFS File Manager)',
+      category: 'Applications',
+      icon: <Code size={16} />,
+      shortcut: 'E',
+      action: () => onLaunchApp('fileflow'),
+    },
+    {
       id: 'app-sys',
       title: 'Open System Monitor & Telemetry',
       category: 'Applications',
       icon: <Activity size={16} />,
-      shortcut: 'P',
+      shortcut: 'Y',
       action: () => onLaunchApp('sysmon'),
     },
     {
@@ -133,10 +173,39 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
   ];
 
-  const filtered = commands.filter((cmd) =>
-    cmd.title.toLowerCase().includes(query.toLowerCase()) ||
-    cmd.category.toLowerCase().includes(query.toLowerCase())
-  );
+  const evaluateMath = (expr: string): number | null => {
+    const sanitized = expr.trim().replace(/\^/g, '**').replace(/x/g, '*');
+    if (!/^[0-9+\-*/().\s*]+$/.test(sanitized) || sanitized.length === 0) return null;
+    try {
+      const res = Function(`"use strict"; return (${sanitized});`)();
+      return typeof res === 'number' && !isNaN(res) ? res : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const mathResult = evaluateMath(query);
+
+  const filtered = [
+    ...(mathResult !== null
+      ? [
+          {
+            id: 'math-result',
+            title: `Calculation Result: ${mathResult}`,
+            category: 'System' as const,
+            icon: <Activity size={16} color="var(--success)" />,
+            action: () => {
+              navigator.clipboard?.writeText(String(mathResult));
+            },
+          },
+        ]
+      : []),
+    ...commands.filter(
+      (cmd) =>
+        cmd.title.toLowerCase().includes(query.toLowerCase()) ||
+        cmd.category.toLowerCase().includes(query.toLowerCase())
+    ),
+  ];
 
   useEffect(() => {
     if (isOpen) {
