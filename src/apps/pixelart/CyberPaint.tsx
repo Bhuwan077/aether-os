@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PixelTool, CYBER_PALETTE } from './types';
 import { sound } from '../../core/audio/soundEngine';
 import {
@@ -9,24 +9,42 @@ import {
   RotateCcw,
   Download,
   Grid,
+  Play,
+  Pause,
+  Plus,
+  Trash2,
 } from 'lucide-react';
 
 const GRID_SIZE = 24;
 
 export const CyberPaint: React.FC = () => {
-  const [pixels, setPixels] = useState<string[][]>(() =>
-    Array.from({ length: GRID_SIZE }, () => new Array(GRID_SIZE).fill(''))
-  );
+  const [frames, setFrames] = useState<string[][][]>([
+    Array.from({ length: GRID_SIZE }, () => new Array(GRID_SIZE).fill('')),
+  ]);
+  const [currentFrameIdx, setCurrentFrameIdx] = useState<number>(0);
   const [activeColor, setActiveColor] = useState<string>('#00f3ff');
   const [activeTool, setActiveTool] = useState<PixelTool>('pencil');
   const [showGrid, setShowGrid] = useState<boolean>(true);
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
+  const [isPlayingAnim, setIsPlayingAnim] = useState<boolean>(false);
+  const [animFps, setAnimFps] = useState<number>(4);
 
-  const canvasExportRef = useRef<HTMLCanvasElement>(null);
+  const pixels = frames[currentFrameIdx] || frames[0];
+
+  // Animation preview loop
+  useEffect(() => {
+    let timer: number;
+    if (isPlayingAnim && frames.length > 1) {
+      timer = window.setInterval(() => {
+        setCurrentFrameIdx((prev) => (prev + 1) % frames.length);
+      }, 1000 / animFps);
+    }
+    return () => clearInterval(timer);
+  }, [isPlayingAnim, frames.length, animFps]);
 
   // Apply pixel tool
   const applyToolAt = (r: number, c: number) => {
-    if (r < 0 || r >= GRID_SIZE || c < 0 || c >= GRID_SIZE) return;
+    if (isPlayingAnim || r < 0 || r >= GRID_SIZE || c < 0 || c >= GRID_SIZE) return;
 
     if (activeTool === 'dropper') {
       const picked = pixels[r][c];
@@ -55,7 +73,6 @@ export const CyberPaint: React.FC = () => {
 
         if (next[cr][cc] === targetColor) {
           next[cr][cc] = activeColor;
-
           if (cr > 0) queue.push([cr - 1, cc]);
           if (cr < GRID_SIZE - 1) queue.push([cr + 1, cc]);
           if (cc > 0) queue.push([cc, cc - 1]);
@@ -63,35 +80,42 @@ export const CyberPaint: React.FC = () => {
         }
       }
 
-      setPixels(next);
+      setFrames((all) => all.map((f, i) => (i === currentFrameIdx ? next : f)));
       return;
     }
 
     // Pencil or Eraser
     const color = activeTool === 'eraser' ? '' : activeColor;
     if (pixels[r][c] !== color) {
-      setPixels((prev) => {
-        const next = prev.map((row) => [...row]);
-        next[r][c] = color;
-        return next;
-      });
+      setFrames((all) =>
+        all.map((f, i) => {
+          if (i !== currentFrameIdx) return f;
+          const next = f.map((row) => [...row]);
+          next[r][c] = color;
+          return next;
+        })
+      );
     }
   };
 
-  const handleCellMouseDown = (r: number, c: number) => {
-    setIsMouseDown(true);
-    applyToolAt(r, c);
-  };
-
-  const handleCellMouseEnter = (r: number, c: number) => {
-    if (isMouseDown && activeTool !== 'bucket' && activeTool !== 'dropper') {
-      applyToolAt(r, c);
-    }
-  };
-
-  const handleClear = () => {
+  const handleAddFrame = () => {
     sound.playClick();
-    setPixels(Array.from({ length: GRID_SIZE }, () => new Array(GRID_SIZE).fill('')));
+    const cloned = pixels.map((row) => [...row]);
+    setFrames((prev) => [...prev, cloned]);
+    setCurrentFrameIdx(frames.length);
+  };
+
+  const handleDeleteFrame = (idx: number) => {
+    if (frames.length <= 1) return;
+    sound.playClick();
+    setFrames((prev) => prev.filter((_, i) => i !== idx));
+    setCurrentFrameIdx((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleClearCurrent = () => {
+    sound.playClick();
+    const empty = Array.from({ length: GRID_SIZE }, () => new Array(GRID_SIZE).fill(''));
+    setFrames((all) => all.map((f, i) => (i === currentFrameIdx ? empty : f)));
   };
 
   const handleExport = () => {
@@ -113,14 +137,14 @@ export const CyberPaint: React.FC = () => {
 
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
-    a.download = 'cyberpaint-sprite.png';
+    a.download = `cyberpaint-frame-${currentFrameIdx + 1}.png`;
     a.click();
   };
 
   return (
     <div
       onMouseUp={() => setIsMouseDown(false)}
-      style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '14px', gap: '12px', backgroundColor: 'rgba(6, 7, 14, 0.95)', color: '#e0f7fa' }}
+      style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '14px', gap: '10px', backgroundColor: 'rgba(6, 7, 14, 0.95)', color: '#e0f7fa' }}
     >
       {/* Top Toolbar */}
       <div
@@ -131,7 +155,7 @@ export const CyberPaint: React.FC = () => {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '8px',
-          padding: '8px 12px',
+          padding: '6px 12px',
           borderRadius: '6px',
         }}
       >
@@ -180,15 +204,14 @@ export const CyberPaint: React.FC = () => {
                   if (activeTool === 'eraser') setActiveTool('pencil');
                 }}
                 style={{
-                  width: '20px',
-                  height: '20px',
+                  width: '18px',
+                  height: '18px',
                   borderRadius: '4px',
                   backgroundColor: col,
                   cursor: 'pointer',
                   border: isSelected ? '2px solid #ffffff' : '1px solid rgba(255,255,255,0.2)',
                   boxShadow: isSelected ? '0 0 8px #ffffff' : 'none',
                   transform: isSelected ? 'scale(1.2)' : 'scale(1)',
-                  transition: 'transform 0.1s ease',
                 }}
               />
             );
@@ -204,7 +227,7 @@ export const CyberPaint: React.FC = () => {
           >
             <Grid size={14} />
           </button>
-          <button onClick={handleClear} className="btn-cyber" title="Clear Canvas">
+          <button onClick={handleClearCurrent} className="btn-cyber" title="Clear Current Frame">
             <RotateCcw size={14} />
           </button>
           <button onClick={handleExport} className="btn-cyber" title="Download Sprite PNG">
@@ -225,7 +248,7 @@ export const CyberPaint: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#04050a',
-          padding: '12px',
+          padding: '8px',
         }}
       >
         <div
@@ -235,8 +258,8 @@ export const CyberPaint: React.FC = () => {
             gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
             gap: showGrid ? '1px' : '0px',
             backgroundColor: showGrid ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-            width: 'min(75vh, 440px)',
-            height: 'min(75vh, 440px)',
+            width: 'min(65vh, 380px)',
+            height: 'min(65vh, 380px)',
             border: '1px solid var(--border-color)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.8)',
           }}
@@ -245,16 +268,96 @@ export const CyberPaint: React.FC = () => {
             row.map((color, c) => (
               <div
                 key={`${r}-${c}`}
-                onMouseDown={() => handleCellMouseDown(r, c)}
-                onMouseEnter={() => handleCellMouseEnter(r, c)}
+                onMouseDown={() => { setIsMouseDown(true); applyToolAt(r, c); }}
+                onMouseEnter={() => { if (isMouseDown && activeTool !== 'bucket' && activeTool !== 'dropper') applyToolAt(r, c); }}
                 style={{
                   backgroundColor: color || 'rgba(10, 10, 18, 0.95)',
                   cursor: activeTool === 'dropper' ? 'crosshair' : 'pointer',
-                  transition: 'background-color 0.05s ease',
                 }}
               />
             ))
           )}
+        </div>
+      </div>
+
+      {/* Animation Timeline Strip */}
+      <div
+        className="glass-panel"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '6px 12px',
+          borderRadius: '6px',
+          gap: '8px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <button
+            onClick={() => {
+              sound.playClick();
+              setIsPlayingAnim(!isPlayingAnim);
+            }}
+            className={`btn-cyber ${isPlayingAnim ? 'btn-cyber-primary' : ''}`}
+            style={{ padding: '2px 8px', fontSize: '11px' }}
+          >
+            {isPlayingAnim ? <Pause size={12} /> : <Play size={12} />}
+            <span>{isPlayingAnim ? 'Stop' : 'Play'}</span>
+          </button>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
+            <span>FPS:</span>
+            <input
+              type="range"
+              min={1}
+              max={12}
+              value={animFps}
+              onChange={(e) => setAnimFps(Number(e.target.value))}
+              style={{ width: '50px', accentColor: 'var(--accent)' }}
+            />
+            <span>{animFps}</span>
+          </label>
+        </div>
+
+        {/* Frames Thumbnail Strip */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', overflowX: 'auto' }}>
+          {frames.map((_, idx) => (
+            <div
+              key={idx}
+              onClick={() => {
+                sound.playClick();
+                setCurrentFrameIdx(idx);
+              }}
+              style={{
+                padding: '3px 8px',
+                borderRadius: '4px',
+                backgroundColor: currentFrameIdx === idx ? 'rgba(0, 243, 255, 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                border: currentFrameIdx === idx ? '1px solid var(--accent)' : '1px solid rgba(255,255,255,0.1)',
+                cursor: 'pointer',
+                fontSize: '11px',
+                fontFamily: 'var(--font-mono)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+              }}
+            >
+              <span>#{idx + 1}</span>
+              {frames.length > 1 && (
+                <Trash2
+                  size={10}
+                  color="var(--error)"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteFrame(idx);
+                  }}
+                />
+              )}
+            </div>
+          ))}
+
+          <button onClick={handleAddFrame} className="btn-cyber" style={{ padding: '3px 6px', fontSize: '10px' }} title="Add Frame">
+            <Plus size={12} />
+          </button>
         </div>
       </div>
     </div>
