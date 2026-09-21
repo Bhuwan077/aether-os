@@ -6,10 +6,13 @@ import { Taskbar } from './components/Taskbar';
 import { Dock } from './components/Dock';
 import { DesktopIcons } from './components/DesktopIcons';
 import { CommandPalette } from './components/CommandPalette';
+import { NotificationCenter } from './components/NotificationCenter';
+import { CosmosWallpaper } from './components/CosmosWallpaper';
+import { notificationManager } from './core/notify/notificationManager';
 import { ThemeId } from './core/theme/types';
 import { applyTheme } from './core/theme/themes';
 
-// Built-in Apps
+// Built-in Apps Suite
 import { WelcomeApp } from './apps/welcome/WelcomeApp';
 import { RetroTerm } from './apps/terminal/RetroTerm';
 import { AlgoPulse } from './apps/algopulse/AlgoPulse';
@@ -18,6 +21,11 @@ import { MindCanvas } from './apps/mindcanvas/MindCanvas';
 import { SynthLab } from './apps/synthlab/SynthLab';
 import { TaskNexus } from './apps/tasknexus/TaskNexus';
 import { SysMon } from './apps/sysmon/SysMon';
+import { FileFlow } from './apps/fileflow/FileFlow';
+import { NeuralPlayground } from './apps/neural/NeuralPlayground';
+import { QuantumStudio } from './apps/quantum/QuantumStudio';
+import { ShaderForge } from './apps/shaders/ShaderForge';
+import { CyberPaint } from './apps/pixelart/CyberPaint';
 
 export const App: React.FC = () => {
   const {
@@ -58,10 +66,16 @@ export const App: React.FC = () => {
         iconName: 'terminal',
         width: 680,
         height: 420,
-        x: 200,
-        y: 130,
+        x: 220,
+        y: 140,
       });
-    }, 150);
+
+      notificationManager.notify(
+        'AetherOS Quantum v2.5',
+        'System initialized. Neural, Quantum, and Shader engines active.',
+        'success'
+      );
+    }, 250);
   }, []);
 
   // Global Ctrl+K / Cmd+K listener
@@ -79,7 +93,7 @@ export const App: React.FC = () => {
   const launchApp = (id: WindowId) => {
     switch (id) {
       case 'welcome':
-        openWindow({ id: 'welcome', title: 'AetherOS User Guide & Architecture', iconName: 'sparkles', width: 800, height: 500 });
+        openWindow({ id: 'welcome', title: 'AetherOS User Guide & Architecture', iconName: 'sparkles', width: 820, height: 520 });
         break;
       case 'retroterm':
         openWindow({ id: 'retroterm', title: 'RetroTerm — aether-sh', iconName: 'terminal', width: 700, height: 440 });
@@ -87,14 +101,29 @@ export const App: React.FC = () => {
       case 'algopulse':
         openWindow({ id: 'algopulse', title: 'AlgoPulse — Algorithm Studio', iconName: 'cpu', width: 840, height: 540 });
         break;
+      case 'neural':
+        openWindow({ id: 'neural', title: 'NeuralPlayground — Deep Learning Sandbox', iconName: 'activity', width: 860, height: 560 });
+        break;
+      case 'quantum':
+        openWindow({ id: 'quantum', title: 'QuantumStudio — Circuit Simulator', iconName: 'sparkles', width: 840, height: 500 });
+        break;
+      case 'shaders':
+        openWindow({ id: 'shaders', title: 'ShaderForge — WebGL Fragment Studio', iconName: 'sparkles', width: 860, height: 540 });
+        break;
       case 'codecraft':
         openWindow({ id: 'codecraft', title: 'CodeCraft — JavaScript Sandbox', iconName: 'code', width: 840, height: 540 });
+        break;
+      case 'fileflow':
+        openWindow({ id: 'fileflow', title: 'FileFlow — Virtual File Manager', iconName: 'folder', width: 840, height: 520 });
+        break;
+      case 'pixelart':
+        openWindow({ id: 'pixelart', title: 'CyberPaint — Sprite Animator', iconName: 'palette', width: 740, height: 520 });
         break;
       case 'mindcanvas':
         openWindow({ id: 'mindcanvas', title: 'MindCanvas — Force Graph', iconName: 'share', width: 820, height: 520 });
         break;
       case 'synthlab':
-        openWindow({ id: 'synthlab', title: 'SynthLab — Audio Synthesizer', iconName: 'music', width: 760, height: 480 });
+        openWindow({ id: 'synthlab', title: 'SynthLab — Audio Synthesizer', iconName: 'music', width: 780, height: 500 });
         break;
       case 'tasknexus':
         openWindow({ id: 'tasknexus', title: 'TaskNexus — Kanban & Pomodoro', iconName: 'check', width: 840, height: 540 });
@@ -113,8 +142,18 @@ export const App: React.FC = () => {
         return <RetroTerm />;
       case 'algopulse':
         return <AlgoPulse />;
+      case 'neural':
+        return <NeuralPlayground />;
+      case 'quantum':
+        return <QuantumStudio />;
+      case 'shaders':
+        return <ShaderForge />;
       case 'codecraft':
         return <CodeCraft />;
+      case 'fileflow':
+        return <FileFlow />;
+      case 'pixelart':
+        return <CyberPaint />;
       case 'mindcanvas':
         return <MindCanvas />;
       case 'synthlab':
@@ -139,33 +178,11 @@ export const App: React.FC = () => {
         backgroundColor: 'var(--bg-dark)',
       }}
     >
-      {/* Subtle Background Glow Spheres */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-100px',
-          left: '20%',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 243, 255, 0.08) 0%, transparent 70%)',
-          filter: 'blur(50px)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '100px',
-          right: '10%',
-          width: '600px',
-          height: '600px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255, 0, 128, 0.06) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
-        }}
-      />
+      {/* Dynamic Constellation Wallpaper Canvas */}
+      <CosmosWallpaper />
+
+      {/* Global Toast Notification Center */}
+      <NotificationCenter />
 
       {/* Desktop Short-cut Icons */}
       <DesktopIcons onLaunch={launchApp} />

@@ -6,7 +6,12 @@ export type WindowId =
   | 'synthlab'
   | 'tasknexus'
   | 'sysmon'
-  | 'welcome';
+  | 'welcome'
+  | 'neural'
+  | 'quantum'
+  | 'shaders'
+  | 'pixelart'
+  | 'fileflow';
 
 export type SnapMode = 'none' | 'left' | 'right' | 'full';
 

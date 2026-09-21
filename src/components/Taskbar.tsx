@@ -30,10 +30,15 @@ export const Taskbar: React.FC<TaskbarProps> = ({
     switch (id) {
       case 'retroterm': return <Terminal size={14} />;
       case 'algopulse': return <Cpu size={14} />;
+      case 'neural': return <Activity size={14} />;
+      case 'quantum': return <Sparkles size={14} />;
+      case 'shaders': return <Sparkles size={14} />;
       case 'codecraft': return <Code size={14} />;
+      case 'fileflow': return <Folder size={14} />;
       case 'mindcanvas': return <Share2 size={14} />;
       case 'synthlab': return <Music size={14} />;
       case 'tasknexus': return <CheckSquare size={14} />;
+      case 'pixelart': return <Palette size={14} />;
       default: return <Sparkles size={14} />;
     }
   };

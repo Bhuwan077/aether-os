@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { Terminal, Cpu, Code, Music, Share2, CheckSquare, Activity, LucideIcon } from 'lucide-react';
+import {
+  Terminal,
+  Cpu,
+  Code,
+  Music,
+  Share2,
+  CheckSquare,
+  Activity,
+  Sparkles,
+  Palette,
+  Folder,
+  LucideIcon,
+} from 'lucide-react';
 import { WindowId } from '../core/wm/types';
 import { sound } from '../core/audio/soundEngine';
 
@@ -13,11 +25,16 @@ export interface DockItem {
 export const DOCK_ITEMS: DockItem[] = [
   { id: 'retroterm', label: 'RetroTerm', icon: Terminal, shortcut: 'T' },
   { id: 'algopulse', label: 'AlgoPulse', icon: Cpu, shortcut: 'A' },
+  { id: 'neural', label: 'Neural Playground', icon: Activity, shortcut: 'N' },
+  { id: 'quantum', label: 'Quantum Studio', icon: Sparkles, shortcut: 'Q' },
+  { id: 'shaders', label: 'ShaderForge', icon: Sparkles, shortcut: 'F' },
   { id: 'codecraft', label: 'CodeCraft', icon: Code, shortcut: 'C' },
-  { id: 'mindcanvas', label: 'MindCanvas', icon: Share2, shortcut: 'M' },
+  { id: 'fileflow', label: 'FileFlow', icon: Folder, shortcut: 'E' },
+  { id: 'pixelart', label: 'CyberPaint', icon: Palette, shortcut: 'P' },
   { id: 'synthlab', label: 'SynthLab', icon: Music, shortcut: 'S' },
+  { id: 'mindcanvas', label: 'MindCanvas', icon: Share2, shortcut: 'M' },
   { id: 'tasknexus', label: 'TaskNexus', icon: CheckSquare, shortcut: 'K' },
-  { id: 'sysmon', label: 'System Monitor', icon: Activity, shortcut: 'P' },
+  { id: 'sysmon', label: 'System Monitor', icon: Activity, shortcut: 'Y' },
 ];
 
 interface DockProps {
