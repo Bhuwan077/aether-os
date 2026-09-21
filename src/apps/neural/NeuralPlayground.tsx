@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { NeuralNetwork } from './engine/network';
 import { DataPoint, ActivationType } from './engine/types';
+import { generateCircleData, generateXorData, generateSpiralData } from './engine/datasets';
 import { sound } from '../../core/audio/soundEngine';
 import { Play, Pause, RotateCcw, SkipForward, Sliders, Activity } from 'lucide-react';
 
@@ -18,34 +19,9 @@ export const NeuralPlayground: React.FC = () => {
 
   // Generate 2D synthetic datasets
   const dataset = useMemo<DataPoint[]>(() => {
-    const points: DataPoint[] = [];
-    const N = 120;
-
-    if (datasetType === 'circle') {
-      for (let i = 0; i < N; i++) {
-        const r = Math.random() < 0.5 ? Math.random() * 0.45 : 0.6 + Math.random() * 0.45;
-        const theta = Math.random() * Math.PI * 2;
-        const x = r * Math.cos(theta);
-        const y = r * Math.sin(theta);
-        points.push({ x, y, label: r < 0.5 ? 1 : 0 });
-      }
-    } else if (datasetType === 'xor') {
-      for (let i = 0; i < N; i++) {
-        const x = (Math.random() * 2 - 1) * 0.9;
-        const y = (Math.random() * 2 - 1) * 0.9;
-        const label = (x > 0 && y > 0) || (x < 0 && y < 0) ? 1 : 0;
-        points.push({ x, y, label });
-      }
-    } else if (datasetType === 'spiral') {
-      for (let i = 0; i < N / 2; i++) {
-        const r = (i / (N / 2)) * 0.95;
-        const t = 1.75 * i * 0.15;
-        points.push({ x: r * Math.sin(t), y: r * Math.cos(t), label: 1 });
-        points.push({ x: -r * Math.sin(t), y: -r * Math.cos(t), label: 0 });
-      }
-    }
-
-    return points;
+    if (datasetType === 'circle') return generateCircleData(120);
+    if (datasetType === 'xor') return generateXorData(120);
+    return generateSpiralData(120);
   }, [datasetType]);
 
   // Model instance ref
