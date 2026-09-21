@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { sound } from '../../core/audio/soundEngine';
+import { SHADER_PRESETS } from './presets';
 import { Play, Pause, RotateCcw, Download, Sparkles, AlertCircle } from 'lucide-react';
 
 const DEFAULT_SHADER = `precision highp float;
@@ -225,6 +226,25 @@ export const ShaderForge: React.FC = () => {
             <Download size={13} />
             <span>Snapshot</span>
           </button>
+        </div>
+
+        {/* Presets */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>Preset:</span>
+          {SHADER_PRESETS.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => {
+                sound.playSuccess();
+                setCode(p.code);
+                startTimeRef.current = performance.now();
+              }}
+              className="btn-cyber"
+              style={{ fontSize: '10px', padding: '2px 6px' }}
+            >
+              {p.name}
+            </button>
+          ))}
         </div>
 
         {error && (
