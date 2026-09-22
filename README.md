@@ -1,15 +1,15 @@
 # 🌌 AETHER OS — Futuristic Cyberpunk Web Workstation
 
 ```text
-   █████╗ ███████╗████████╗██╗  ██╗███████╗██████╗     OS: AetherOS Quantum v2.5
-  ██╔══██╗██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗    Kernel: WebAssembly 64-bit
+   █████╗ ███████╗████████╗██╗  ██╗███████╗██████╗     OS: AetherOS Cyber-Physical v3.2
+  ██╔══██╗██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗    Kernel: WebAssembly 64-bit + Pure TS Engines
   ███████║█████╗     ██║   ███████║█████╗  ██████╔╝    Compositor: Glassmorphism Multi-Window
-  ██╔══██║██╔══╝     ██║   ██╔══██║██╔══╝  ██╔══██╗    Audio: Procedural Web Audio Synth
-  ██║  ██║███████╗   ██║   ██║  ██║███████╗██║  ██║    Status: Production Ready • 42 Commits
-  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    Tests: 59/59 Passing (100%)
+  ██╔══██║██╔══╝     ██║   ██╔══██║██╔══╝  ██╔══██╗    Audio: Procedural Drum & Synth Engine
+  ██║  ██║███████╗   ██║   ██║  ██║███████╗██║  ██║    Status: Production Ready • 64 Commits
+  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    Tests: 91/91 Passing (100%)
 ```
 
-> **AetherOS** is an ultra-fast, modular cyberpunk desktop environment and developer workstation engineered with **React 19, TypeScript, and Vite**. It combines high-performance multi-window compositing, a persistent Virtual File System, procedural audio synthesis, deep learning neural networks, quantum computing simulation, and WebGL raymarching shaders.
+> **AetherOS** is an ultra-fast, modular cyberpunk desktop environment and developer workstation engineered with **React 19, TypeScript, and Vite**. It combines high-performance multi-window compositing, a persistent Virtual File System, procedural Web Audio percussion synthesis, deep learning neural networks, quantum computing simulation, WebGL raymarching shaders, in-browser relational SQL databases, cryptographic studios, and 2D N-body gravitational physics simulations.
 
 ---
 
@@ -26,15 +26,22 @@ flowchart TD
         Cosmos["Cosmos Wallpaper Engine (Particles)"]
     end
 
-    subgraph CoreEngines["Core Infrastructure"]
+    subgraph CoreEngines["Core Infrastructure & Runtime"]
         VFS["Virtual File System (LocalStorage Persistence)"]
-        Audio["Web Audio Procedural Synth Engine"]
+        Audio["Web Audio Procedural Drum & Synth Engine"]
         Theme["Theme Matrix (5 Cyberpunk Themes)"]
     end
 
-    subgraph CreativeApps["Creative & Engineering Suite"]
+    subgraph ScientificApps["Scientific & Computational Suite"]
         Neural["NeuralPlayground (MLP & Heatmap)"]
         Quantum["QuantumStudio (Statevector & Gates)"]
+        Physics["CelestialOrbits (2D N-Body Gravity)"]
+        Crypto["CryptForge (RSA, Ciphers & Stego)"]
+        SQL["SQLSand (Relational Query Engine)"]
+    end
+
+    subgraph CreativeApps["Creative & Engineering Suite"]
+        Beat["BeatMatrix (16-Step Drum Machine)"]
         Shader["ShaderForge (WebGL GLSL & Audio)"]
         Pixel["CyberPaint (Pixel Art & Sprite Anim)"]
         FileF["FileFlow (VFS Graphical Explorer)"]
@@ -48,28 +55,34 @@ flowchart TD
     end
 
     DesktopCompositor --> CoreEngines
+    ScientificApps --> DesktopCompositor
     CreativeApps --> DesktopCompositor
+    ScientificApps --> CoreEngines
     CreativeApps --> CoreEngines
 ```
 
 ---
 
-## 🚀 The 12 Built-In Power Applications
+## 🚀 The 16 Built-In Power Applications
 
-| Application | Description |
-| :--- | :--- |
-| **🧠 NeuralPlayground** | Interactive deep learning sandbox with multi-layer perceptron (MLP), feedforward and backpropagation with matrix math, real-time 2D decision boundary heatmap, synaptic weight topology, and synthetic dataset generators (Spiral, XOR, Circle). |
-| **⚛️ QuantumStudio** | Multi-qubit statevector quantum circuit simulator with Hadamard (H), Pauli (X, Y, Z), Phase (S), T, and CNOT entanglement gates. Features measurement probability histograms and Bell/GHZ presets. |
-| **🔮 ShaderForge** | Real-time WebGL fragment shader visualizer with audio reactivity (`u_audio` FFT RMS), live GLSL compilation diagnostics, 60 FPS viewport, and presets (*Cyber Tunnel*, *Neon Grid Horizon*, *Cosmic Plasma*). |
-| **🎨 CyberPaint** | 8-bit pixel art studio and sprite animator with flood fill (BFS), color dropper, customizable cyber palettes, multi-frame timeline, FPS loop playback, and PNG export. |
-| **📁 FileFlow** | Graphical file manager for the Virtual File System featuring bookmark favorites, breadcrumb navigation, search filters, file inspector with in-place text/markdown editing, and file creation. |
-| **📟 RetroTerm** | Authentic Unix terminal with command tokenizer, pipes (`\|`), grep filters, command history (`↑`/`↓`), tab autocomplete, `neofetch`, and fullscreen **Matrix digital rain**. |
-| **⚡ AlgoPulse** | Algorithm studio featuring **Sorting Visualizer** (QuickSort, BubbleSort, InsertionSort with musical pitches), **Pathfinding Visualizer** (A* & Dijkstra with interactive wall drawing), and **Conway's Game of Life** with presets. |
-| **💻 CodeCraft** | In-browser JavaScript code editor and execution sandbox with line numbers, console logger, execution duration benchmarks, and VFS file synchronization. |
-| **🎹 SynthLab** | Polyphonic synthesizer with 2-octave piano keyboard, ADSR envelope shaping (Attack, Decay, Sustain, Release), oscillator waveforms (sawtooth, square, sine, triangle), and real-time FFT oscilloscope. |
-| **🕸️ MindCanvas** | Force-directed physics knowledge graph on HTML5 canvas with dynamic Coulomb repulsion, Hooke spring attraction, velocity damping, node creation, and PNG export. |
-| **📋 TaskNexus** | Kanban sprint board with drag-and-drop / column advancement, priority tags, integrated Pomodoro focus timer, and confetti milestones. |
-| **📊 System Monitor** | Real-time CPU telemetry chart (moving-average SVG), RAM heap simulator, active window thread manager, and theme switcher. |
+| Application | Category | Description |
+| :--- | :--- | :--- |
+| **🛡️ CryptForge** | Security | Cryptography laboratory featuring **Classical Ciphers** (Caesar, ROT13, Atbash, Vigenère, XOR), **SHA-256 Avalanche Matrix** (256-bit visual diffusion grid), **RSA Modular Arithmetic Studio** (arbitrary-precision BigInt key generation & encryption trace), and **LSB Image Steganography** (payload embedding & extraction in raw pixel buffers). |
+| **🗄️ SQLSand** | Database | In-browser relational database studio powered by a pure TypeScript SQL lexer, recursive descent AST parser, and relational execution engine. Supports `SELECT`, `WHERE` filtering, `ORDER BY`, `LIMIT`, and `INNER JOIN` operations with dynamic schema explorer and JSON export. |
+| **🪐 CelestialOrbits** | Simulation | 2D N-body gravitational physics sandbox using symplectic **Velocity Verlet integration** for energy conservation. Features orbital presets (*Keplerian Solar System*, *Figure-8 3-Body Choreography*, *Binary Star & Circumbinary Planet*, *Lagrange Trojans*), particle trails, energy telemetry, and interactive slingshot vector launching. |
+| **🥁 BeatMatrix** | Audio | 16-step percussion drum machine & rhythm sequencer powered by the procedural Web Audio engine (`playKick`, `playSnare`, `playHiHat`, synthesized bass, cyber blips). Features live playhead runner, BPM tempo slider, preset rhythms (*Synthwave 1984*, *Berlin Techno*, *Breakbeat*), and JSON pattern export. |
+| **🧠 NeuralPlayground** | AI / ML | Interactive deep learning sandbox with multi-layer perceptron (MLP), feedforward and backpropagation with matrix math, real-time 2D decision boundary heatmap, synaptic weight topology, and synthetic dataset generators (Spiral, XOR, Circle). |
+| **⚛️ QuantumStudio** | Quantum | Multi-qubit statevector quantum circuit simulator with Hadamard (H), Pauli (X, Y, Z), Phase (S), T, and CNOT entanglement gates. Features measurement probability histograms and Bell/GHZ presets. |
+| **🔮 ShaderForge** | Graphics | Real-time WebGL fragment shader visualizer with audio reactivity (`u_audio` FFT RMS), live GLSL compilation diagnostics, 60 FPS viewport, and presets (*Cyber Tunnel*, *Neon Grid Horizon*, *Cosmic Plasma*). |
+| **🎨 CyberPaint** | Creative | 8-bit pixel art studio and sprite animator with flood fill (BFS), color dropper, customizable cyber palettes, multi-frame timeline, FPS loop playback, and PNG export. |
+| **📁 FileFlow** | System | Graphical file manager for the Virtual File System featuring bookmark favorites, breadcrumb navigation, search filters, file inspector with in-place text/markdown editing, and file creation. |
+| **📟 RetroTerm** | Terminal | Authentic Unix terminal with command tokenizer, pipes (`\|`), grep filters, command history (`↑`/`↓`), tab autocomplete, `neofetch`, and fullscreen **Matrix digital rain**. |
+| **⚡ AlgoPulse** | Algorithms | Algorithm studio featuring **Sorting Visualizer** (QuickSort, BubbleSort, InsertionSort with musical pitches), **Pathfinding Visualizer** (A* & Dijkstra with interactive wall drawing), and **Conway's Game of Life** with presets. |
+| **💻 CodeCraft** | Development | In-browser JavaScript code editor and execution sandbox with line numbers, console logger, execution duration benchmarks, and VFS file synchronization. |
+| **🎹 SynthLab** | Audio | Polyphonic synthesizer with 2-octave piano keyboard, ADSR envelope shaping (Attack, Decay, Sustain, Release), oscillator waveforms (sawtooth, square, sine, triangle), and real-time FFT oscilloscope. |
+| **🕸️ MindCanvas** | Productivity | Force-directed physics knowledge graph on HTML5 canvas with dynamic Coulomb repulsion, Hooke spring attraction, velocity damping, node creation, and PNG export. |
+| **📋 TaskNexus** | Productivity | Kanban sprint board with drag-and-drop / column advancement, priority tags, integrated Pomodoro focus timer, and confetti milestones. |
+| **📊 System Monitor** | System | Real-time CPU telemetry chart (moving-average SVG), RAM heap simulator, active window thread manager, and theme switcher. |
 
 ---
 
@@ -89,6 +102,7 @@ AetherOS includes 5 custom built-in cyberpunk and developer themes:
 | Keybinding | Action |
 | :--- | :--- |
 | `Ctrl + K` / `Cmd + K` | Summon Global Spotlight Command Palette (with inline math solver) |
+| `Ctrl + Enter` | Execute query in SQLSand |
 | `Double Click Titlebar` | Maximize / Restore Window |
 | `◧` / `◨` Buttons | Snap Window Half-Screen Dock |
 | `Tab` (in RetroTerm) | Autocomplete command names and file paths |
@@ -116,7 +130,7 @@ npm run dev
 
 ### Running Test Suite
 ```bash
-# Run Vitest unit tests (59 tests covering VFS, WM, Terminal, Audio, Algorithms, Neural, Quantum, Math)
+# Run Vitest unit tests (91 tests covering all engines and subsystems)
 npm test
 ```
 
@@ -131,11 +145,15 @@ npm run preview
 
 ---
 
-## 🧪 Test Coverage Summary (59 Unit Tests Passing)
-- **Virtual File System**: CRUD, tree, path normalization, persistent storage
+## 🧪 Test Coverage Summary (91 Unit Tests Passing)
+- **Cryptography Suite**: Classical ciphers (Caesar, ROT13, Atbash, Vigenère, XOR hex), SHA-256 standard vectors, Avalanche bit diffusion, RSA modular exponentiation & key generation, LSB steganography encode/decode
+- **Relational SQL Suite**: SQL lexer tokenization, AST parser (SELECT, INSERT, CREATE TABLE), WHERE operators (`=`, `!=`, `<`, `>`, `LIKE`), ORDER BY, LIMIT, and INNER JOIN table merging
+- **Gravitational Physics Suite**: Vector math, Newton's third law momentum conservation, stationary fixed bodies, Velocity Verlet symplectic Keplerian orbit stability, negative bound energy verification
+- **BeatMatrix Sequencer**: 16-step grid state transitions, immutability, BPM-to-millisecond interval math, step clock wrap-around, rhythmic presets
+- **Audio Engine**: Polyphonic tone synthesis, procedural percussion triggers (`playKick`, `playSnare`, `playHiHat`), volume clamping, mute toggling
+- **Virtual File System**: Tree hierarchy, recursive mkdir, CRUD operations, path normalization, persistent storage
 - **Window Manager**: Z-index stacking, edge snapping, maximization, bounds restoration
 - **Terminal Engine**: Tokenization, quotes, pipe execution, command autocomplete
-- **Audio Engine**: Procedural synthesis, volume clamping, mute toggling
 - **Sorting Algorithms**: QuickSort, BubbleSort, InsertionSort correctness
 - **Pathfinding Algorithms**: A* heuristic search, Dijkstra shortest path
 - **Cellular Automaton**: Conway's Game of Life B3/S23 rules & presets
