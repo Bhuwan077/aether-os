@@ -7,7 +7,8 @@ import {
   vigenereEncrypt,
   vigenereDecrypt,
   xorEncryptHex,
-  xorDecryptHex
+  xorDecryptHex,
+  reverseCipher
 } from '../engine/ciphers';
 import { computeSha256, computeAvalanche } from '../engine/hashes';
 import { gcd, modInverse, modPow, generateRsaKeys, rsaEncrypt, rsaDecrypt } from '../engine/rsa';
@@ -37,6 +38,11 @@ describe('Classical Ciphers', () => {
     const text = 'Wizard of Oz';
     const atb = atbash(text);
     expect(atbash(atb)).toBe(text);
+  });
+
+  it('should accurately reverse character strings', () => {
+    expect(reverseCipher('AetherOS')).toBe('SOrehteA');
+    expect(reverseCipher('12345')).toBe('54321');
   });
 
   it('should encrypt and decrypt using Vigenere cipher', () => {
