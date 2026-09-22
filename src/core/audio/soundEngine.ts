@@ -139,6 +139,31 @@ export class SoundEngine {
     }, 70);
   }
 
+  public playLaser(): void {
+    if (this.muted) return;
+    this.resume();
+    if (!this.ctx || !this.masterGain) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(1200, now);
+      osc.frequency.exponentialRampToValueAtTime(80, now + 0.15);
+
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(now);
+      osc.stop(now + 0.16);
+    } catch {}
+  }
+
   // --- Procedural Drum Synthesis ---
 
   public playKick(): void {
