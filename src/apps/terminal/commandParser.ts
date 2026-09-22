@@ -268,6 +268,9 @@ export class TerminalEngine {
       case 'whoami':
         return 'user@aether-workstation (uid=1000, gid=1000, roles=[developer, architect, admin])';
 
+      case 'uptime':
+        return 'aether-sh up 42 days, 13 hours, 37 mins, load average: 0.12, 0.08, 0.04';
+
       case 'date':
         return new Date().toString();
 
