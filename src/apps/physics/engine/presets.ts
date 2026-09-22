@@ -217,5 +217,48 @@ export const ORBITAL_PRESETS: OrbitalPreset[] = [
         trail: []
       }
     ]
+  },
+  {
+    id: 'chaotic_triple',
+    name: 'Chaotic Triple Dance',
+    description: 'Three equal mass bodies in a non-periodic, highly sensitive chaotic gravitational interaction.',
+    bodies: [
+      {
+        id: 'c1',
+        name: 'Vortex-A',
+        x: -120,
+        y: -60,
+        vx: 1.8,
+        vy: -1.2,
+        mass: 3000,
+        radius: 9,
+        color: '#ec4899',
+        trail: []
+      },
+      {
+        id: 'c2',
+        name: 'Vortex-B',
+        x: 120,
+        y: -60,
+        vx: -1.8,
+        vy: -1.2,
+        mass: 3000,
+        radius: 9,
+        color: '#8b5cf6',
+        trail: []
+      },
+      {
+        id: 'c3',
+        name: 'Vortex-C',
+        x: 0,
+        y: 120,
+        vx: 0,
+        vy: 2.4,
+        mass: 3000,
+        radius: 9,
+        color: '#06b6d4',
+        trail: []
+      }
+    ]
   }
 ];
