@@ -17,6 +17,10 @@ import {
   VolumeX,
   HelpCircle,
   Sparkles,
+  ShieldCheck,
+  Database,
+  Orbit,
+  Disc,
 } from 'lucide-react';
 
 export interface CommandItem {
@@ -134,6 +138,38 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       icon: <Code size={16} />,
       shortcut: 'E',
       action: () => onLaunchApp('fileflow'),
+    },
+    {
+      id: 'app-crypto',
+      title: 'Open CryptForge (RSA, Ciphers & Steganography)',
+      category: 'Applications',
+      icon: <ShieldCheck size={16} />,
+      shortcut: 'R',
+      action: () => onLaunchApp('crypto'),
+    },
+    {
+      id: 'app-sql',
+      title: 'Open SQLSand (In-Browser Relational DB)',
+      category: 'Applications',
+      icon: <Database size={16} />,
+      shortcut: 'D',
+      action: () => onLaunchApp('sql'),
+    },
+    {
+      id: 'app-physics',
+      title: 'Open CelestialOrbits (2D N-Body Physics)',
+      category: 'Applications',
+      icon: <Orbit size={16} />,
+      shortcut: 'O',
+      action: () => onLaunchApp('physics'),
+    },
+    {
+      id: 'app-sequencer',
+      title: 'Open BeatMatrix (16-Step Drum Machine)',
+      category: 'Applications',
+      icon: <Disc size={16} />,
+      shortcut: 'B',
+      action: () => onLaunchApp('sequencer'),
     },
     {
       id: 'app-sys',
