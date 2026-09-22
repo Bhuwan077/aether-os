@@ -193,6 +193,17 @@ export function insert<T>(root: TreeNode<T> | null, val: T): TreeNode<T> {
     );
 
     this.writeFile(
+      '/home/user/notes/tips.md',
+      `# 💡 AetherOS Productivity Tips
+- **Command Palette**: Press \`Ctrl + K\` to launch apps, switch themes, or solve inline math expressions!
+- **Terminal Pipes**: Combine commands in RetroTerm: \`cat /etc/motd | grep -i session\`.
+- **SQLSand**: Press \`Ctrl + Enter\` to quickly execute queries.
+- **BeatMatrix**: Click pads to toggle rhythms and drag the BPM slider to adjust tempo live.
+- **Window Snapping**: Click the \`◧\` and \`◨\` buttons to snap windows side-by-side.
+`
+    );
+
+    this.writeFile(
       '/etc/motd',
       `AetherOS v2.4-quantum (x86_64-wasm-web)
 Authorized user access only. Terminal session established.
