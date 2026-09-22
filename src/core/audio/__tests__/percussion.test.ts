@@ -18,6 +18,11 @@ describe('SoundEngine Percussion & Drum Synthesis', () => {
     expect(() => engine.playHiHat(false)).not.toThrow();
   });
 
+  it('should safely execute playLaser without throwing in headless environments', () => {
+    const engine = new SoundEngine();
+    expect(() => engine.playLaser()).not.toThrow();
+  });
+
   it('should not attempt synthesis when muted', () => {
     const engine = new SoundEngine();
     engine.toggleMute();
