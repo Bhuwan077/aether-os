@@ -41,7 +41,7 @@ export const BeatMatrix: React.FC = () => {
   const patternRef = useRef(pattern);
   patternRef.current = pattern;
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Play sound for active step tracks
   const triggerStepSounds = (step: number) => {
