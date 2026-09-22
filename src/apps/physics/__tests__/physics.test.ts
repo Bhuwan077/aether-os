@@ -76,7 +76,7 @@ describe('Gravitational Physics & Vector Math', () => {
   });
 
   it('should have valid orbital presets with positive masses and radii', () => {
-    expect(ORBITAL_PRESETS.length).toBeGreaterThanOrEqual(4);
+    expect(ORBITAL_PRESETS.length).toBeGreaterThanOrEqual(5);
     for (const preset of ORBITAL_PRESETS) {
       expect(preset.bodies.length).toBeGreaterThan(1);
       for (const b of preset.bodies) {
@@ -84,5 +84,10 @@ describe('Gravitational Physics & Vector Math', () => {
         expect(b.radius).toBeGreaterThan(0);
       }
     }
+
+    const chaotic = ORBITAL_PRESETS.find((p) => p.id === 'chaotic_triple');
+    expect(chaotic).toBeDefined();
+    expect(chaotic?.bodies.length).toBe(3);
+  });
   });
 });
