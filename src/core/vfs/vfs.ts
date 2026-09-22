@@ -217,6 +217,22 @@ Type 'help' for available system commands.
     );
 
     this.writeFile(
+      '/etc/network.json',
+      JSON.stringify(
+        {
+          interface: 'eth0',
+          ipAddress: '192.168.1.42',
+          gateway: '192.168.1.1',
+          dns: ['1.1.1.1', '8.8.8.8'],
+          quantumTunnel: true,
+          status: 'UP'
+        },
+        null,
+        2
+      )
+    );
+
+    this.writeFile(
       '/var/log/syslog',
       `[${new Date(now - 3600000).toISOString()}] SYSTEM_INIT: Core kernel loaded.
 [${new Date(now - 2400000).toISOString()}] VFS: Virtual file system mounted on root /.
