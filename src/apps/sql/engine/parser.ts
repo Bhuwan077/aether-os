@@ -1,4 +1,4 @@
-import { Token, SqlStatement, SelectStatement, InsertStatement, CreateTableStatement, SqlValue, ComparisonOperator } from './types';
+import { Token, SqlStatement, SelectStatement, InsertStatement, CreateTableStatement, DropTableStatement, SqlValue, ComparisonOperator } from './types';
 import { tokenize } from './lexer';
 
 export class SqlParser {
@@ -22,9 +22,22 @@ export class SqlParser {
       if (token.value === 'CREATE') {
         return this.parseCreate();
       }
+      if (token.value === 'DROP') {
+        return this.parseDrop();
+      }
     }
 
-    throw new Error(`Syntax Error: Expected SELECT, INSERT, or CREATE statement, but found "${token.value}"`);
+    throw new Error(`Syntax Error: Expected SELECT, INSERT, CREATE, or DROP statement, but found "${token.value}"`);
+  }
+
+  private parseDrop(): DropTableStatement {
+    this.consume('KEYWORD', 'DROP');
+    this.consume('KEYWORD', 'TABLE');
+    const table = this.consumeIdentifierOrKeyword().value;
+    return {
+      type: 'DROP_TABLE',
+      table
+    };
   }
 
   private parseSelect(): SelectStatement {

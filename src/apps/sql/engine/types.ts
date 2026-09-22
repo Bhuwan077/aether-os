@@ -80,7 +80,12 @@ export interface CreateTableStatement {
   columns: string[];
 }
 
-export type SqlStatement = SelectStatement | InsertStatement | CreateTableStatement;
+export interface DropTableStatement {
+  type: 'DROP_TABLE';
+  table: string;
+}
+
+export type SqlStatement = SelectStatement | InsertStatement | CreateTableStatement | DropTableStatement;
 
 export interface QueryResult {
   columns: string[];

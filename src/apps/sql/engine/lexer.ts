@@ -18,6 +18,7 @@ const KEYWORDS = new Set([
   'VALUES',
   'CREATE',
   'TABLE',
+  'DROP',
   'AND',
   'OR',
   'LIKE',
