@@ -51,6 +51,12 @@ describe('TerminalEngine', () => {
     expect(outputs[0]).toContain('load average');
   });
 
+  it('should execute hostname command returning current station name', () => {
+    const ctx = createCtx();
+    engine.execute('hostname', ctx);
+    expect(outputs[0]).toBe('aether-workstation');
+  });
+
   it('should provide tab autocompletions for commands and files', () => {
     const compCmd = engine.getCompletions('neo', '/home/user');
     expect(compCmd).toContain('neofetch');
