@@ -89,5 +89,4 @@ describe('Gravitational Physics & Vector Math', () => {
     expect(chaotic).toBeDefined();
     expect(chaotic?.bodies.length).toBe(3);
   });
-  });
 });
