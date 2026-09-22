@@ -31,6 +31,10 @@ export function atbash(text: string): string {
   });
 }
 
+export function reverseCipher(text: string): string {
+  return text.split('').reverse().join('');
+}
+
 export function vigenereEncrypt(text: string, key: string): string {
   if (!key) return text;
   const cleanKey = key.toUpperCase().replace(/[^A-Z]/g, '');
