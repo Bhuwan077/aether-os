@@ -88,5 +88,19 @@ export const SEQUENCER_PRESETS: DrumPattern[] = [
       synth_pulse: [true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, false],
       cyber_beep: [false, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false]
     }
+  },
+  {
+    id: 'lofi_chill',
+    name: 'Lo-Fi Cyber Chill',
+    bpm: 84,
+    totalSteps: 16,
+    tracks: {
+      kick: [true, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false],
+      snare: [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false],
+      hihat_closed: [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true],
+      hihat_open: [false, false, false, false, false, false, false, true, false, false, false, false, false, false, true, false],
+      synth_pulse: [true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false],
+      cyber_beep: [false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false]
+    }
   }
 ];
