@@ -1,7 +1,23 @@
 {
-  "name": "practice",
-  "private": true,
-  "version": "0.0.0",
+  "name": "aether-os",
+  "version": "3.2.0",
+  "description": "Futuristic Cyberpunk Web Workstation & Desktop Operating System",
+  "author": "Bhuwan Adhikari",
+  "license": "MIT",
+  "keywords": [
+    "cyberpunk",
+    "web-desktop",
+    "operating-system",
+    "window-manager",
+    "react19",
+    "typescript",
+    "vite",
+    "virtual-file-system",
+    "neural-networks",
+    "quantum-computing",
+    "relational-database",
+    "nbody-physics"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
