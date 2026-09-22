@@ -44,6 +44,13 @@ describe('TerminalEngine', () => {
     expect(outputs[0]).toContain('user@aether-workstation');
   });
 
+  it('should execute uptime command returning system duration', () => {
+    const ctx = createCtx();
+    engine.execute('uptime', ctx);
+    expect(outputs[0]).toContain('aether-sh up');
+    expect(outputs[0]).toContain('load average');
+  });
+
   it('should provide tab autocompletions for commands and files', () => {
     const compCmd = engine.getCompletions('neo', '/home/user');
     expect(compCmd).toContain('neofetch');
