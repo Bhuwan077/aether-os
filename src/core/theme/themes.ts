@@ -101,6 +101,26 @@ export const THEMES: Record<ThemeId, ThemeColors> = {
     scanlines: false,
     wallpaperGradients: 'radial-gradient(ellipse at 50% 20%, #073642 0%, #001f27 100%)',
   },
+  amber: {
+    id: 'amber',
+    name: 'Cyberpunk Amber',
+    bgDark: '#0f0a05',
+    bgSurface: 'rgba(32, 20, 10, 0.75)',
+    bgSurfaceHover: 'rgba(48, 30, 15, 0.85)',
+    borderColor: 'rgba(245, 158, 11, 0.3)',
+    borderActive: 'rgba(251, 191, 36, 0.9)',
+    textPrimary: '#fffbeb',
+    textSecondary: '#fde68a',
+    textMuted: '#92400e',
+    accent: '#f59e0b',
+    accentHover: '#fbbf24',
+    accentGlow: '0 0 15px rgba(245, 158, 11, 0.5)',
+    success: '#10b981',
+    warning: '#f59e0b',
+    error: '#ef4444',
+    scanlines: true,
+    wallpaperGradients: 'radial-gradient(ellipse at 50% 20%, #2b1808 0%, #0a0502 100%)',
+  },
 };
 
 export function applyTheme(themeId: ThemeId): void {

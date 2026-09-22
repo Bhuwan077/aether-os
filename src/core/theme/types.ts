@@ -1,4 +1,4 @@
-export type ThemeId = 'cyberpunk' | 'obsidian' | 'nord' | 'matrix' | 'solarized';
+export type ThemeId = 'cyberpunk' | 'obsidian' | 'nord' | 'matrix' | 'solarized' | 'amber';
 
 export interface ThemeColors {
   id: ThemeId;
