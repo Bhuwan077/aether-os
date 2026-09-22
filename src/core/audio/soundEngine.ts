@@ -138,6 +138,115 @@ export class SoundEngine {
       this.playTone(1320, 0.1, 'sine', 0.25);
     }, 70);
   }
+
+  // --- Procedural Drum Synthesis ---
+
+  public playKick(): void {
+    if (this.muted) return;
+    this.resume();
+    if (!this.ctx || !this.masterGain) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(32, now + 0.12);
+
+      gain.gain.setValueAtTime(0.8, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(now);
+      osc.stop(now + 0.3);
+    } catch {}
+  }
+
+  public playSnare(): void {
+    if (this.muted) return;
+    this.resume();
+    if (!this.ctx || !this.masterGain) return;
+
+    try {
+      const now = this.ctx.currentTime;
+
+      // Tone component
+      const osc = this.ctx.createOscillator();
+      const oscGain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(180, now);
+      oscGain.gain.setValueAtTime(0.4, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+      osc.connect(oscGain);
+      oscGain.connect(this.masterGain);
+      osc.start(now);
+      osc.stop(now + 0.12);
+
+      // Noise component (synthesized buffer)
+      const bufferSize = this.ctx.sampleRate * 0.18;
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.setValueAtTime(1000, now);
+
+      const noiseGain = this.ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.5, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.16);
+
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(this.masterGain);
+
+      noise.start(now);
+      noise.stop(now + 0.18);
+    } catch {}
+  }
+
+  public playHiHat(closed = true): void {
+    if (this.muted) return;
+    this.resume();
+    if (!this.ctx || !this.masterGain) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const duration = closed ? 0.05 : 0.22;
+      const bufferSize = Math.floor(this.ctx.sampleRate * duration);
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.setValueAtTime(7000, now);
+
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.masterGain);
+
+      noise.start(now);
+      noise.stop(now + duration);
+    } catch {}
+  }
 }
 
 export const sound = new SoundEngine();
