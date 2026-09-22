@@ -31,27 +31,100 @@ export class VirtualFileSystem {
     this.mkdir('/home/user/desktop', true);
     this.mkdir('/home/user/projects', true);
     this.mkdir('/home/user/notes', true);
+    this.mkdir('/home/user/database', true);
+    this.mkdir('/home/user/security', true);
+    this.mkdir('/home/user/music', true);
+    this.mkdir('/home/user/physics', true);
     this.mkdir('/etc', true);
     this.mkdir('/var/log', true);
 
     this.writeFile(
       '/home/user/desktop/welcome.md',
-      `# 🌌 Welcome to AetherOS v2.4 (Quantum Build)
+      `# 🌌 Welcome to AetherOS v3.2 (Cyber-Physical Release)
 
 AetherOS is a next-generation web workstation and developer sandbox inspired by cyberpunk aesthetics and high-performance computing.
 
-### ⚡ Key Capabilities:
+### ⚡ Power Applications:
+- **CryptForge**: Classical ciphers (Caesar, Vigenère, XOR), SHA-256 Avalanche matrix, RSA modular arithmetic playground, and LSB image steganography.
+- **SQLSand**: In-browser relational database studio with pure TypeScript lexer, AST parser, and query engine (SELECT, INNER JOIN, WHERE, ORDER BY).
+- **CelestialOrbits**: 2D N-body gravitational physics simulation with Verlet integration, Keplerian orbits, and Lagrange points.
+- **BeatMatrix**: 16-step percussion drum machine & rhythm sequencer utilizing Web Audio procedural synthesis.
 - **Interactive Window Manager**: Draggable, resizable windows, snapping, minimizing, maximizing, stacking.
 - **AlgoPulse Studio**: Sorting algorithms, graph pathfinding (A*, Dijkstra), Conway's Game of Life.
+- **NeuralPlayground & QuantumStudio**: Deep learning MLP and quantum statevector circuit simulation.
 - **CodeCraft REPL**: Multi-tab code sandbox with real-time evaluation and performance profiler.
-- **MindCanvas**: Force-directed physics knowledge graph and mind-mapping canvas.
 - **RetroTerm**: Unix shell with autocomplete, pipe operations, matrix digital rain, and command history.
-- **SynthLab**: Web Audio polyphonic synthesizer with ADSR envelopes and live oscilloscope.
-- **TaskNexus**: Kanban board with task matrix and integrated Pomodoro timer.
-- **System Monitor**: Live simulated CPU/RAM usage meters, audio visualizer, theme switcher.
 
 Use **Ctrl + K** anytime to summon the **Command Palette**!
 `
+    );
+
+    this.writeFile(
+      '/home/user/database/queries.sql',
+      `-- SQLSand Relational Queries
+-- Retrieve all high clearance security personnel
+SELECT username, role, clearance, department
+FROM users
+WHERE clearance >= 4
+ORDER BY clearance DESC;
+
+-- Correlate audit security events with user identities
+SELECT audit_logs.id, users.username, audit_logs.action, audit_logs.severity
+FROM audit_logs
+INNER JOIN users ON user_id = id
+WHERE audit_logs.severity = 'CRITICAL';
+`
+    );
+
+    this.writeFile(
+      '/home/user/security/rsa_keys.json',
+      JSON.stringify(
+        {
+          algorithm: 'RSA-BigInt',
+          keySizeBits: 2048,
+          publicKey: { e: '65537', n: '3233' },
+          privateKey: { d: '2753', phi: '3120' },
+          primes: { p: '61', q: '53' },
+          fingerprint: 'SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        },
+        null,
+        2
+      )
+    );
+
+    this.writeFile(
+      '/home/user/music/synthwave_groove.json',
+      JSON.stringify(
+        {
+          name: 'Cyber Horizon 1984',
+          bpm: 124,
+          steps: 16,
+          tracks: {
+            kick: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+            snare: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            hihat_closed: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+          }
+        },
+        null,
+        2
+      )
+    );
+
+    this.writeFile(
+      '/home/user/physics/solar_system.json',
+      JSON.stringify(
+        {
+          name: 'Inner Solar System',
+          G: 1000,
+          bodies: [
+            { name: 'Sol', mass: 12000, x: 0, y: 0, vx: 0, vy: 0 },
+            { name: 'Terra', mass: 15, x: 0, y: -140, vx: 9.25, vy: 0 },
+            { name: 'Ares', mass: 10, x: 0, y: -210, vx: 7.55, vy: 0 }
+          ]
+        },
+        null,
+        2
+      )
     );
 
     this.writeFile(
