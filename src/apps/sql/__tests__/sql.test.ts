@@ -47,6 +47,12 @@ describe('SQL Lexer & Parser', () => {
       expect(insertAst.table).toBe('servers');
       expect(insertAst.values).toEqual([1, 'gateway-01', 8080]);
     }
+
+    const dropAst = parseSql('DROP TABLE servers');
+    expect(dropAst.type).toBe('DROP_TABLE');
+    if (dropAst.type === 'DROP_TABLE') {
+      expect(dropAst.table).toBe('servers');
+    }
   });
 });
 
