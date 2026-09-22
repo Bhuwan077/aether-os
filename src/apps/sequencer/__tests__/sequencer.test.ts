@@ -51,7 +51,7 @@ describe('BeatMatrix Sequencer Engine', () => {
   });
 
   it('should provide complete rhythmic presets for all drum tracks', () => {
-    expect(SEQUENCER_PRESETS.length).toBeGreaterThanOrEqual(3);
+    expect(SEQUENCER_PRESETS.length).toBeGreaterThanOrEqual(4);
     for (const preset of SEQUENCER_PRESETS) {
       expect(preset.bpm).toBeGreaterThan(60);
       expect(preset.totalSteps).toBe(16);
@@ -60,5 +60,9 @@ describe('BeatMatrix Sequencer Engine', () => {
         expect(preset.tracks[track.id].length).toBe(16);
       }
     }
+
+    const lofi = SEQUENCER_PRESETS.find((p) => p.id === 'lofi_chill');
+    expect(lofi).toBeDefined();
+    expect(lofi?.bpm).toBe(84);
   });
 });
