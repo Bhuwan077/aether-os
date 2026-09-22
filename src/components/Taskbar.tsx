@@ -2,7 +2,7 @@ import React from 'react';
 import { WindowState, WindowId } from '../core/wm/types';
 import { SystemTray } from './SystemTray';
 import { ThemeId } from '../core/theme/types';
-import { Terminal, Cpu, Code, Music, Share2, CheckSquare, Sparkles, Activity, Folder, Palette } from 'lucide-react';
+import { Terminal, Cpu, Code, Music, Share2, CheckSquare, Sparkles, Activity, Folder, Palette, ShieldCheck, Database, Orbit, Disc } from 'lucide-react';
 import { sound } from '../core/audio/soundEngine';
 
 interface TaskbarProps {
@@ -30,6 +30,10 @@ export const Taskbar: React.FC<TaskbarProps> = ({
     switch (id) {
       case 'retroterm': return <Terminal size={14} />;
       case 'algopulse': return <Cpu size={14} />;
+      case 'crypto': return <ShieldCheck size={14} />;
+      case 'sql': return <Database size={14} />;
+      case 'physics': return <Orbit size={14} />;
+      case 'sequencer': return <Disc size={14} />;
       case 'neural': return <Activity size={14} />;
       case 'quantum': return <Sparkles size={14} />;
       case 'shaders': return <Sparkles size={14} />;

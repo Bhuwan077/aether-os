@@ -11,7 +11,11 @@ export type WindowId =
   | 'quantum'
   | 'shaders'
   | 'pixelart'
-  | 'fileflow';
+  | 'fileflow'
+  | 'crypto'
+  | 'sql'
+  | 'physics'
+  | 'sequencer';
 
 export type SnapMode = 'none' | 'left' | 'right' | 'full';
 

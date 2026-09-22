@@ -10,6 +10,10 @@ import {
   Sparkles,
   Palette,
   Folder,
+  ShieldCheck,
+  Database,
+  Orbit,
+  Disc,
   LucideIcon,
 } from 'lucide-react';
 import { WindowId } from '../core/wm/types';
@@ -25,6 +29,10 @@ export interface DockItem {
 export const DOCK_ITEMS: DockItem[] = [
   { id: 'retroterm', label: 'RetroTerm', icon: Terminal, shortcut: 'T' },
   { id: 'algopulse', label: 'AlgoPulse', icon: Cpu, shortcut: 'A' },
+  { id: 'crypto', label: 'CryptForge', icon: ShieldCheck, shortcut: 'R' },
+  { id: 'sql', label: 'SQLSand', icon: Database, shortcut: 'D' },
+  { id: 'physics', label: 'CelestialOrbits', icon: Orbit, shortcut: 'O' },
+  { id: 'sequencer', label: 'BeatMatrix', icon: Disc, shortcut: 'B' },
   { id: 'neural', label: 'Neural Playground', icon: Activity, shortcut: 'N' },
   { id: 'quantum', label: 'Quantum Studio', icon: Sparkles, shortcut: 'Q' },
   { id: 'shaders', label: 'ShaderForge', icon: Sparkles, shortcut: 'F' },

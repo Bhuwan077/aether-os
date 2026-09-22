@@ -26,6 +26,10 @@ import { NeuralPlayground } from './apps/neural/NeuralPlayground';
 import { QuantumStudio } from './apps/quantum/QuantumStudio';
 import { ShaderForge } from './apps/shaders/ShaderForge';
 import { CyberPaint } from './apps/pixelart/CyberPaint';
+import { CryptForge } from './apps/crypto/CryptForge';
+import { SQLSand } from './apps/sql/SQLSand';
+import { CelestialOrbits } from './apps/physics/CelestialOrbits';
+import { BeatMatrix } from './apps/sequencer/BeatMatrix';
 
 export const App: React.FC = () => {
   const {
@@ -131,6 +135,18 @@ export const App: React.FC = () => {
       case 'sysmon':
         openWindow({ id: 'sysmon', title: 'System Monitor & Telemetry', iconName: 'activity', width: 780, height: 520 });
         break;
+      case 'crypto':
+        openWindow({ id: 'crypto', title: 'CryptForge — Security & Steganography Studio', iconName: 'shield', width: 860, height: 560 });
+        break;
+      case 'sql':
+        openWindow({ id: 'sql', title: 'SQLSand — In-Browser Relational Studio', iconName: 'database', width: 860, height: 540 });
+        break;
+      case 'physics':
+        openWindow({ id: 'physics', title: 'CelestialOrbits — 2D N-Body Physics', iconName: 'orbit', width: 880, height: 560 });
+        break;
+      case 'sequencer':
+        openWindow({ id: 'sequencer', title: 'BeatMatrix — 16-Step Drum Machine', iconName: 'disc', width: 860, height: 520 });
+        break;
     }
   };
 
@@ -154,6 +170,14 @@ export const App: React.FC = () => {
         return <FileFlow />;
       case 'pixelart':
         return <CyberPaint />;
+      case 'crypto':
+        return <CryptForge />;
+      case 'sql':
+        return <SQLSand />;
+      case 'physics':
+        return <CelestialOrbits />;
+      case 'sequencer':
+        return <BeatMatrix />;
       case 'mindcanvas':
         return <MindCanvas />;
       case 'synthlab':
